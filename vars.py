@@ -9,8 +9,11 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 CREDIT = os.environ.get("CREDIT", "⌯ FʀᴏɴᴛMᴀɴ | ×͜× |")
 # MongoDB Configuration
 DATABASE_NAME = os.environ.get("DATABASE_NAME", "DevThanos")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://ravimishra200101:L6js4FKiDltyWUGB@cluster0.znjbdbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")  # Add your own atlas db
-MONGO_URL = DATABASE_URL  # For auth system
+DATABASE_URL = os.environ.get("DATABASE_URL", "")
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL is not set in environment")
+
+MONGO_URL = DATABASE_URL
 
 # Owner and Admin Configuration
 OWNER_ID = int(os.environ.get("OWNER_ID", "7793257011"))
@@ -59,6 +62,7 @@ Please contact the admin @ItsUGBot to get access.</blockquote>""",
 
 <blockquote>Use format: {format}</blockquote>"""
 }
+
 
 
 
