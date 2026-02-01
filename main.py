@@ -68,6 +68,9 @@ from vars import *
 from pyromod import listen
 from db import db
 
+from yt_dlp import YoutubeDL
+import yt_dlp as youtube_dl
+
 auto_flags = {}
 auto_clicked = False
 
@@ -833,7 +836,7 @@ async def txt_handler(bot: Client, m: Message):
             elif "webvideos.classplusapp." in url:
                cmd = f'yt-dlp --add-header "referer:https://web.classplusapp.com/" --add-header "x-cdn-tag:empty" -f "{ytf}" "{url}" -o "{name}.mp4"'         
             elif "youtube.com" in url or "youtu.be" in url:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}".mp4'
+                cmd = f'yt-dlp --cookies "{cookies_file_path}" -f "{ytf}" "{url}" -o "{name}.mp4"'
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
