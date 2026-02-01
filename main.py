@@ -833,15 +833,10 @@ async def txt_handler(bot: Client, m: Message):
             elif "webvideos.classplusapp." in url:
                cmd = f'yt-dlp --add-header "referer:https://web.classplusapp.com/" --add-header "x-cdn-tag:empty" -f "{ytf}" "{url}" -o "{name}.mp4"'         
             elif "youtube.com" in url or "youtu.be" in url:
-                # Check if cookies file exists
-                if os.path.exists(cookies_file_path):
-                    # Use cookies
-                    cmd = f'yt-dlp --cookies "{cookies_file_path}" -f "{ytf}" "{url}" -o "{name}.mp4"'
-                else:
-                    # No cookies needed
-                    cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
-            else:
-                cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
+               cmd = ["yt-dlp", "-f", ytf, url, "-o", f"{name}.mp4"]
+           else:
+               cmd = ["yt-dlp", "-f", ytf, url, "-o", f"{name}.mp4"]
+
             try:
                 cc = (
     f"<b>🏷️ Iɴᴅᴇx ID  :</b> {str(count).zfill(3)}\n\n"
