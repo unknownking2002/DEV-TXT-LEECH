@@ -53,6 +53,8 @@ RUN mkdir -p /etc/aria2 \
          "continue=true\n" \
          "check-integrity=true" > /etc/aria2/aria2.conf
 
+RUN pip install -U yt-dlp
+
 # Use gunicorn with reduced workers to save memory
 CMD gunicorn --bind 0.0.0.0:${PORT:-8000} \
     --workers 1 \
@@ -61,4 +63,5 @@ CMD gunicorn --bind 0.0.0.0:${PORT:-8000} \
     app:app & \
     aria2c --enable-rpc --rpc-listen-all --daemon=true && \
     python3 main.py
+
 
